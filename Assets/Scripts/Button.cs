@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
+    public GameObject gameManager;
     private TextMeshProUGUI text;
     private void Start()
     {
@@ -13,6 +14,8 @@ public class Button : MonoBehaviour
 
     public void ButtonClick()
     {
-        text.text += "C";
+        text.text += "a";
+        //text.text = gameManager.GetComponent<LockScreen>().StartLockScreen();
+        //text.text += "C";
     }
 }
