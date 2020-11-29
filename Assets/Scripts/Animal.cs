@@ -7,13 +7,13 @@ public class Animal : MonoBehaviour
 {
     [Header("Animal Properties")]
     [SerializeField]
-    private Image animalImage;
+    private Sprite animalImage;
     [SerializeField]
     private AudioClip animalSound;
     [SerializeField]
-    private Image animalBackground;
+    private Sprite animalBackground;
 
-    public Image getAnimalImage()
+    public Sprite getAnimalImage()
     {
         return animalImage;
     }
@@ -23,7 +23,7 @@ public class Animal : MonoBehaviour
         return animalSound;
     }
 
-    public Image getAnimalBackground()
+    public Sprite getAnimalBackground()
     {
         return animalBackground;
     }

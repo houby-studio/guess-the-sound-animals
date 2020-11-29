@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Button : MonoBehaviour
+public class ButtonLogic : MonoBehaviour
 {
-    public GameObject gameManager;
+    public string test;
+
     private TextMeshProUGUI text;
     private void Start()
     {
@@ -14,7 +15,7 @@ public class Button : MonoBehaviour
 
     public void ButtonClick()
     {
-        text.text += "a";
+        GameManager.instance.NewQuiz();
         //text.text = gameManager.GetComponent<LockScreen>().StartLockScreen();
         //text.text += "C";
     }
