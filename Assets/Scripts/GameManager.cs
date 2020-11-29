@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 /// <summary>Holds Button components accessed via GameManager.
 /// </summary>
 public class QuizButton
 {
-    public QuizButton(ButtonLogic buttonComponent, Image imageComponent, TextMeshProUGUI nameComponent)
+    public QuizButton(ButtonLogic buttonComponent, Image imageComponent, LocalizeStringEvent nameComponent)
     {
         button = buttonComponent;
         image = imageComponent;
@@ -19,7 +21,7 @@ public class QuizButton
 
     public ButtonLogic button;
     public Image image;
-    public TextMeshProUGUI name;
+    public LocalizeStringEvent name;
 }
 
 /// <summary>Holds Item properties accessed via GameManager.
@@ -28,11 +30,13 @@ public class QuizItem
 {
     public QuizItem(Animal animal)
     {
-        image = animal.getAnimalImage();
-        backgroundImage = animal.getAnimalBackground();
-        audio = animal.getAnimalSound();
+        itemName = animal.GetAnimalName();
+        image = animal.GetAnimalImage();
+        backgroundImage = animal.GetAnimalBackground();
+        audio = animal.GetAnimalSound();
     }
 
+    public string itemName;
     public Sprite image;
     public Sprite backgroundImage;
     public AudioClip audio;
@@ -71,7 +75,7 @@ public class GameManager : MonoBehaviour
         // Obtain components from Button GameObjects
         for (var i = 0; i < buttons.Count; i++)
         {
-            quizButtons.Add(new QuizButton(buttons[i].GetComponent<ButtonLogic>(), buttons[i].GetComponentInChildren<Image>(), buttons[i].GetComponentInChildren<TextMeshProUGUI>()));
+            quizButtons.Add(new QuizButton(buttons[i].GetComponent<ButtonLogic>(), buttons[i].GetComponentInChildren<Image>(), buttons[i].GetComponentInChildren<LocalizeStringEvent>()));
             //Debug.Log("Created item:");
             //Debug.Log("Name: " + quizButtons[i].name);
             //Debug.Log("Test: " + quizButtons[i].button.test);
@@ -100,9 +104,11 @@ public class GameManager : MonoBehaviour
         // Set image and text for each button
         for (var i = 0; i < newItems.Length; i++)
         {
-            quizButtons[i].name.text = newItems[i].image.name;
+            quizButtons[i].name.StringReference.TableReference = newItems[i].itemName;
+            Debug.Log(quizButtons[i].name.StringReference.GetLocalizedString().Result);
             quizButtons[i].image.sprite = newItems[i].image;
-            Debug.Log(newItems[i].image.name);
+            Debug.Log(newItems[i].itemName);
+            //Debug.Log(quizButtons[i].name.StringReference.TableReference.TableCollectionName);
         }
         // Select correct answer
         correctAnswerIndex = rnd.Next(buttons.Count);

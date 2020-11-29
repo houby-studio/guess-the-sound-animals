@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c7abcd1141caf4894e6e8e9078c5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animalName: ROOSTER
   animalImage: {fileID: -4352971076401502898, guid: 1b9290678e433894fb1f2e4a5b2f1355, type: 3}
   animalSound: {fileID: 8300000, guid: cec2fef697a3924488d6767a64a68f15, type: 3}
   animalBackground: {fileID: 21300000, guid: cf019401db40d7344a4ea77dbf6f4b75, type: 3}
