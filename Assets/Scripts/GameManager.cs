@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
@@ -12,7 +13,7 @@ using UnityEngine.UI;
 /// </summary>
 public class QuizButton
 {
-    public QuizButton(ButtonLogic buttonComponent, Image imageComponent, LocalizeStringEvent nameComponent)
+    public QuizButton(ButtonLogic buttonComponent, Image imageComponent, LocalizedString nameComponent)
     {
         button = buttonComponent;
         image = imageComponent;
@@ -21,7 +22,7 @@ public class QuizButton
 
     public ButtonLogic button;
     public Image image;
-    public LocalizeStringEvent name;
+    public LocalizedString name;
 }
 
 /// <summary>Holds Item properties accessed via GameManager.
@@ -51,6 +52,10 @@ public class GameManager : MonoBehaviour
     private List<GameObject> buttons;
     [SerializeField]
     private GameObject backgroundPanel;
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private TextMeshProUGUI correctItemName;
 
     [Header("GameData")]
     [SerializeField]
@@ -62,6 +67,7 @@ public class GameManager : MonoBehaviour
     private List<QuizItem> quizItems = new List<QuizItem>();
     private Image quizBackground;
     private int correctAnswerIndex = 0;
+    private QuizItem correctAnswerItem;
 
     void Awake()
     {
@@ -69,30 +75,24 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    // Start is called before the first frame update
     private void Start()
     {
         // Obtain components from Button GameObjects
         for (var i = 0; i < buttons.Count; i++)
         {
-            quizButtons.Add(new QuizButton(buttons[i].GetComponent<ButtonLogic>(), buttons[i].GetComponentInChildren<Image>(), buttons[i].GetComponentInChildren<LocalizeStringEvent>()));
-            //Debug.Log("Created item:");
-            //Debug.Log("Name: " + quizButtons[i].name);
-            //Debug.Log("Test: " + quizButtons[i].button.test);
-            //Debug.Log("Sprite: " + quizButtons[i].image.sprite);
+            quizButtons.Add(new QuizButton(buttons[i].GetComponent<ButtonLogic>(), buttons[i].GetComponentInChildren<Image>(), buttons[i].GetComponentInChildren<LocalizeStringEvent>().StringReference));
         }
         // Obtain properties from Item GameObjects
         for (var i = 0; i < items.Count; i++)
         {
             quizItems.Add(new QuizItem(items[i].GetComponent<Animal>()));
-            //Debug.Log("Created item:");
-            //Debug.Log("Image: " + quizItems[i].image.name);
-            //Debug.Log("Background Image: " + quizItems[i].backgroundImage.name);
-            //Debug.Log("Audio: " + quizItems[i].audio.name);
         }
         // Obtain Background Image component from backgroundPanel GameObject
         quizBackground = backgroundPanel.GetComponent<Image>();
         NewQuiz();
+#if UNITY_EDITOR
+        correctItemName.enabled = true;
+#endif
     }
 
     public void NewQuiz()
@@ -104,15 +104,29 @@ public class GameManager : MonoBehaviour
         // Set image and text for each button
         for (var i = 0; i < newItems.Length; i++)
         {
-            quizButtons[i].name.StringReference.TableReference = newItems[i].itemName;
-            Debug.Log(quizButtons[i].name.StringReference.GetLocalizedString().Result);
+            quizButtons[i].name.TableEntryReference = newItems[i].itemName;
             quizButtons[i].image.sprite = newItems[i].image;
-            Debug.Log(newItems[i].itemName);
-            //Debug.Log(quizButtons[i].name.StringReference.TableReference.TableCollectionName);
         }
-        // Select correct answer
-        correctAnswerIndex = rnd.Next(buttons.Count);
+        // Select correct answer - not same item as before
+        do
+        {
+            correctAnswerIndex = rnd.Next(buttons.Count);
+        }
+        while (correctAnswerItem == newItems[correctAnswerIndex]);
+        // Correct answer item
+        correctAnswerItem = newItems[correctAnswerIndex];
         // Set background for correct answer
-        quizBackground.sprite = newItems[correctAnswerIndex].backgroundImage;
+        quizBackground.sprite = correctAnswerItem.backgroundImage;
+        // Display name for correct item - Debug only
+#if UNITY_EDITOR
+        correctItemName.text = correctAnswerItem.itemName;
+#endif
+        // Play sound for correct answer
+        PlaySound();
+    }
+
+    public void PlaySound()
+    {
+        audioSource.PlayOneShot(correctAnswerItem.audio);
     }
 }
