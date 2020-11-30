@@ -445,8 +445,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 959.4144, y: -540.3296}
-  m_SizeDelta: {x: 572.94293, y: 0}
+  m_AnchoredPosition: {x: 960.2803, y: -539.84235}
+  m_SizeDelta: {x: 573.5202, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &306674637
 MonoBehaviour:
@@ -537,7 +537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5c5b0d936b9da458ef48287b3ff1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: test1
 --- !u!1 &309052025
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,8 +905,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1582.3573, y: -540.3296}
-  m_SizeDelta: {x: 572.94293, y: 0}
+  m_AnchoredPosition: {x: 1583.8005, y: -539.84235}
+  m_SizeDelta: {x: 573.5202, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &541816720
 MonoBehaviour:
@@ -998,7 +997,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5c5b0d936b9da458ef48287b3ff1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: test3
 --- !u!1 &633407945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1543,6 +1541,7 @@ GameObject:
   - component: {fileID: 1948931386}
   - component: {fileID: 1948931385}
   - component: {fileID: 1948931389}
+  - component: {fileID: 1948931387}
   m_Layer: 5
   m_Name: QuizButton1
   m_TagString: Untagged
@@ -1568,8 +1567,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 336.47147, y: -540.3296}
-  m_SizeDelta: {x: 572.94293, y: 0}
+  m_AnchoredPosition: {x: 336.7601, y: -539.84235}
+  m_SizeDelta: {x: 573.5202, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1948931385
 MonoBehaviour:
@@ -1603,7 +1602,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1640,6 +1639,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &1948931387
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948931383}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: abfd27023b0bc024bb563a3ca2c25555, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!222 &1948931388
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1660,7 +1678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5c5b0d936b9da458ef48287b3ff1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: test1
 --- !u!1 &2031999705
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class ButtonLogic : MonoBehaviour
 {
-    public string test;
+    private Animator buttonAnimator;
 
-    private TextMeshProUGUI text;
     private void Start()
     {
-        text = GetComponentInChildren<TextMeshProUGUI>();
+        buttonAnimator = GetComponent<Animator>();
     }
 
     public void ButtonClick()
     {
         GameManager.instance.NewQuiz();
-        //text.text = gameManager.GetComponent<LockScreen>().StartLockScreen();
-        //text.text += "C";
+        //buttonAnimator.Play("Wrong");
+        buttonAnimator.SetTrigger("Wrong");
+        //buttonAnimator.SetBool("Wrong", false);
     }
 }
