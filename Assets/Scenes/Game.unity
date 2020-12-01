@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 306674638}
   - component: {fileID: 306674637}
   - component: {fileID: 306674641}
+  - component: {fileID: 306674639}
   m_Layer: 5
   m_Name: QuizButton2
   m_TagString: Untagged
@@ -517,6 +518,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &306674639
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306674635}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: abfd27023b0bc024bb563a3ca2c25555, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!222 &306674640
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -537,6 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5c5b0d936b9da458ef48287b3ff1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonIndex: 0
 --- !u!1 &309052025
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,6 +901,7 @@ GameObject:
   - component: {fileID: 541816721}
   - component: {fileID: 541816720}
   - component: {fileID: 541816724}
+  - component: {fileID: 541816722}
   m_Layer: 5
   m_Name: QuizButton3
   m_TagString: Untagged
@@ -977,6 +999,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &541816722
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541816718}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: abfd27023b0bc024bb563a3ca2c25555, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!222 &541816723
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -997,6 +1038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5c5b0d936b9da458ef48287b3ff1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonIndex: 0
 --- !u!1 &633407945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,6 +1720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5c5b0d936b9da458ef48287b3ff1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonIndex: 0
 --- !u!1 &2031999705
 GameObject:
   m_ObjectHideFlags: 0

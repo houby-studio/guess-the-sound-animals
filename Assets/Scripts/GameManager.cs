@@ -62,14 +62,16 @@ public class GameManager : MonoBehaviour
     private List<GameObject> items;
 
     public static GameManager instance;
+    public bool inputEnabled = true;
 
     private List<QuizButton> quizButtons = new List<QuizButton>();
     private List<QuizItem> quizItems = new List<QuizItem>();
     private Image quizBackground;
     private int correctAnswerIndex = 0;
     private QuizItem correctAnswerItem;
+    private QuizItem[] newItems;
 
-    void Awake()
+    private void Awake()
     {
         // Set instance to this, so this whole script gets set to instance of the object we created above
         instance = this;
@@ -81,6 +83,7 @@ public class GameManager : MonoBehaviour
         for (var i = 0; i < buttons.Count; i++)
         {
             quizButtons.Add(new QuizButton(buttons[i].GetComponent<ButtonLogic>(), buttons[i].GetComponentInChildren<Image>(), buttons[i].GetComponentInChildren<LocalizeStringEvent>().StringReference));
+            quizButtons[i].button.buttonIndex = i;
         }
         // Obtain properties from Item GameObjects
         for (var i = 0; i < items.Count; i++)
@@ -89,23 +92,32 @@ public class GameManager : MonoBehaviour
         }
         // Obtain Background Image component from backgroundPanel GameObject
         quizBackground = backgroundPanel.GetComponent<Image>();
-        NewQuiz();
+        NewQuiz(true);
 #if UNITY_EDITOR
         correctItemName.enabled = true;
 #endif
     }
 
-    public void NewQuiz()
+    private void NewQuiz(bool firstRun = false)
     {
         System.Random rnd = new System.Random();
 
         // For each button obtain new Quiz item for next Quiz
-        QuizItem[] newItems = quizItems.OrderBy(x => rnd.Next()).Take(buttons.Count).ToArray();
+        newItems = quizItems.OrderBy(x => rnd.Next()).Take(buttons.Count).ToArray();
         // Set image and text for each button
         for (var i = 0; i < newItems.Length; i++)
         {
-            quizButtons[i].name.TableEntryReference = newItems[i].itemName;
-            quizButtons[i].image.sprite = newItems[i].image;
+            // Do not run spin animation on first run
+            if (firstRun)
+            {
+                quizButtons[i].name.TableEntryReference = newItems[i].itemName;
+                quizButtons[i].image.sprite = newItems[i].image;
+            }
+            else
+            {
+                // Spin button and switch image mid spin
+                quizButtons[i].button.PlaySpin();
+            }
         }
         // Select correct answer - not same item as before
         do
@@ -123,10 +135,39 @@ public class GameManager : MonoBehaviour
 #endif
         // Play sound for correct answer
         PlaySound();
+        // Enable input
+        inputEnabled = true;
     }
 
-    public void PlaySound()
+    private void PlaySound()
     {
         audioSource.PlayOneShot(correctAnswerItem.audio);
+    }
+
+    public IEnumerator PressButton(int buttonIndex, Animator anim)
+    {
+        // Play button animation for correct or wrong answer
+        if (buttonIndex == correctAnswerIndex)
+            anim.SetTrigger("Right");
+        else
+            anim.SetTrigger("Wrong");
+
+        // Wait until current animation finishes
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+
+        // Generate new Quiz when answer was correct or enable input if answer was wrong
+        if (buttonIndex == correctAnswerIndex)
+            NewQuiz();
+        else
+            inputEnabled = true;
+
+        //yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+    }
+
+    public void ChangeButton(int index)
+    {
+        // Called from ButtonLogic on Animation Event
+        quizButtons[index].name.TableEntryReference = newItems[index].itemName;
+        quizButtons[index].image.sprite = newItems[index].image;
     }
 }

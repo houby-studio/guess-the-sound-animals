@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ButtonLogic : MonoBehaviour
 {
+    public int buttonIndex;
+
     private Animator buttonAnimator;
 
     private void Start()
@@ -14,9 +16,23 @@ public class ButtonLogic : MonoBehaviour
 
     public void ButtonClick()
     {
-        GameManager.instance.NewQuiz();
-        //buttonAnimator.Play("Wrong");
-        buttonAnimator.SetTrigger("Wrong");
-        //buttonAnimator.SetBool("Wrong", false);
+        // If input is enabled, disable it and start coroutine for button press
+        if (GameManager.instance.inputEnabled)
+        {
+            GameManager.instance.inputEnabled = false;
+            StartCoroutine(GameManager.instance.PressButton(buttonIndex, buttonAnimator));
+        }
+    }
+
+    // Play button animation, which triggers ChangeButton
+    public void PlaySpin()
+    {
+        buttonAnimator.SetTrigger("Spin");
+    }
+
+    // Changes text and image to next Quiz item
+    public void ChangeButton()
+    {
+        GameManager.instance.ChangeButton(buttonIndex);
     }
 }
