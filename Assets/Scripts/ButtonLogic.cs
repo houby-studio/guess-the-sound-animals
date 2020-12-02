@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonLogic : MonoBehaviour
 {
     public int buttonIndex;
+    public Image image;
 
     private Animator buttonAnimator;
+    private TextMeshProUGUI text;
 
     private void Start()
     {
         buttonAnimator = GetComponent<Animator>();
+        image = GetComponentInChildren<Image>();
+        text = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void ButtonClick()
@@ -30,9 +35,16 @@ public class ButtonLogic : MonoBehaviour
         buttonAnimator.SetTrigger("Spin");
     }
 
+    public void HideButton()
+    {
+        text.enabled = false;
+        image.sprite = GameManager.instance.cardbackImage;
+    }
+
     // Changes text and image to next Quiz item
     public void ChangeButton()
     {
+        text.enabled = true;
         GameManager.instance.ChangeButton(buttonIndex);
     }
 }

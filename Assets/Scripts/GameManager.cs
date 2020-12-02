@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField]
     private TextMeshProUGUI correctItemName;
+    public Sprite cardbackImage;
 
     [Header("GameData")]
     [SerializeField]
