@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject backgroundPanel;
     [SerializeField]
+    private Material blurMaterial;
+    [SerializeField]
     private AudioSource audioSource;
     [SerializeField]
     private TextMeshProUGUI correctItemName;
@@ -116,6 +118,8 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                // Play blur animation
+
                 // Spin button and switch image mid spin
                 quizButtons[i].button.PlaySpin();
             }
