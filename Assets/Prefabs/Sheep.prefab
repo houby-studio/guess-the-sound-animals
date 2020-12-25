@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalName: SHEEP
   animalImage: {fileID: -4080612391683771413, guid: 1b9290678e433894fb1f2e4a5b2f1355, type: 3}
-  animalSound: {fileID: 8300000, guid: cec2fef697a3924488d6767a64a68f15, type: 3}
+  animalSound: {fileID: 8300000, guid: 0cbc5be6192b0574e84db4e6eb9d7107, type: 3}
   animalBackground: {fileID: 21300000, guid: 52f79288fb007fb46bdc6e6d10d79a67, type: 3}

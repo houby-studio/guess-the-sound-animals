@@ -153,9 +153,14 @@ public class GameManager : MonoBehaviour
     {
         // Play button animation for correct or wrong answer
         if (buttonIndex == correctAnswerIndex)
+        {
             anim.SetTrigger("Right");
+        }            
         else
+        {
             anim.SetTrigger("Wrong");
+            PlaySound();
+        }
 
         // Wait until current animation finishes
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);

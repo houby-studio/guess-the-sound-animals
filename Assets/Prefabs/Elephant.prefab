@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalName: ELEPHANT
   animalImage: {fileID: 6325959722684844488, guid: 1b9290678e433894fb1f2e4a5b2f1355, type: 3}
-  animalSound: {fileID: 8300000, guid: cec2fef697a3924488d6767a64a68f15, type: 3}
+  animalSound: {fileID: 8300000, guid: d71ceeaf9eb4b1c408cc51d1d9069d98, type: 3}
   animalBackground: {fileID: 21300000, guid: d9bd626610086304e92d18d2d949c548, type: 3}
